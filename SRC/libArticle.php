@@ -58,19 +58,19 @@ function subArticle()
 				</tr>
 				<tr>
 					<th>物件名</th>
-					<td><input type="text" name="sArticle" value="<?php print $sRooms ?>" size="50" /></td>
+					<td><input type="text" name="sArticle" value="<?php print $sArticle ?>" size="50" /></td>
 					<th>キーBox番号</th>
 					<td><input type="text" name="sKeyBox" value="<?php print $sKeyBox ?>" size="30" /></td>
 				</tr>
 				<tr>
 					<th>部屋番号</th>
-					<td><input type="text" name="sRoom" value="" size="30" /><?php print $sArticle ?></td>
+					<td><input type="text" name="sRoom" value="<?php print $sRoom ?>" size="30" /></td>
 					<th>3Dパース</th>
 					<td><input type="text" name="sDrawing" value="<?php print $sDrawing ?>" size="30" /></td>
 				</tr>
 				<tr>
 					<th>鍵場所</th>
-					<td><input type="text" name="sKeyPlace" value="<?php print $sKagPlace ?>" size="30" /></td>
+					<td><input type="text" name="sKeyPlace" value="<?php print $sKeyPlace ?>" size="30" /></td>
 					<th>営業担当者</th>
 					<td><input type="text" name="sSellCharge" value="<?php print $sSellCharge ?>" /></td>
 				</tr>
@@ -80,63 +80,62 @@ function subArticle()
 		<input type="image" src="./images/btn_search.png" onclick="form.act.value='articleSearch';form.sPage.value=1;form.submit();" />
 
 		<hr />
-	</form>
-	<?php
-	if ($_REQUEST['act'] == 'article') {
-		return;
-	}
-	$sql = fnSqlArticleList(0, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo);
-	$res = mysqli_query($conn, $sql);
-	$row = mysqli_fetch_array($res);
+		<?php
+		if ($_REQUEST['act'] == 'article') {
+			return;
+		}
+		$sql = fnSqlArticleList(0, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo);
+		$res = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_array($res);
 
-	$count = $row[0];
+		$count = $row[0];
 
-	$sPage = fnPage($count, $sPage, 'articleSearch');
-	?>
+		$sPage = fnPage($count, $sPage, 'articleSearch');
+		?>
 
-	<div class="list">
-		<table border="0" cellpadding="5" cellspacing="1">
-			<tr>
-				<th class="list_head">物件名<?php fnOrder('ARTICLE', 'articleSearch') ?></th>
-				<th class="list_head">部屋<?php fnOrder('ROOM', 'articleSearch') ?></th>
-				<th class="list_head">鍵場所<?php fnOrder('KEYPLACE', 'articleSearch') ?></th>
-				<th class="list_head">備考<?php fnOrder('ARTICLENOTE', 'articleSearch') ?></th>
-				<th class="list_head">書類</th>
-				<th class="list_head">キーBox番号<?php fnOrder('KEYBOX', 'articleSearch') ?></th>
-				<th class="list_head">3Dパース<?php fnOrder('DRAWING', 'articleSearch') ?></th>
-				<th class="list_head">営業担当者<?php fnOrder('SELLCHARGE', 'articleSearch') ?></th>
-			</tr>
-			<?php
-			$sql = fnSqlArticleList(1, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo);
-
-			$res = mysqli_query($conn, $sql);
-			$i = 0;
-			while ($row = mysqli_fetch_array($res)) {
-				$articleNo   = $row["ARTICLENO"];
-				$article     = $row["ARTICLE"];
-				$room        = $row["ROOM"];
-				$keyPlace    = $row["KEYPLACE"];
-				$articleNote =  $row["ARTICLENOTE"];
-				$keyBox      = $row["KEYBOX"];
-				$drawing     = $row["DRAWING"];
-				$sellCharge  = $row["SELLCHARGE"];
-			?>
+		<div class="list">
+			<table border="0" cellpadding="5" cellspacing="1">
 				<tr>
-					<td class="list_td<?php print $i ?>"><a href="javascript:form.act.value='articleEdit';form.articleNo.value='<?php print $rrticleNo ?>';form.submit();"><?php print $article ?></a></td>
-					<td class="list_td<?php print $i ?>"><?php print $room ?></td>
-					<td class="list_td<?php print $i ?>"><?php print $drawing ?></td>
-					<td class="list_td<?php print $i ?>"><?php print $keyPlace ?></td>
-					<td class="list_td<?php print $i ?>"><?php print $articleNote ?></td>
-					<td class="list_td<?php print $i ?>"><?php print $room ?></td>
-					<td class="list_td<?php print $i ?>"><?php print $sellCharge ?></td>
-					<td class="list_td<?php print $i ?>"><a href="javascript:form.act.value='stock';form.sName.value='<?php print $article ?>';form.sRoom.value='<?php print $room ?>';form.submit();">表示</a></td>
+					<th class="list_head">物件名<?php fnOrder('ARTICLE', 'articleSearch') ?></th>
+					<th class="list_head">部屋<?php fnOrder('ROOM', 'articleSearch') ?></th>
+					<th class="list_head">鍵場所<?php fnOrder('KEYPLACE', 'articleSearch') ?></th>
+					<th class="list_head">備考<?php fnOrder('ARTICLENOTE', 'articleSearch') ?></th>
+					<th class="list_head">書類</th>
+					<th class="list_head">キーBox番号<?php fnOrder('KEYBOX', 'articleSearch') ?></th>
+					<th class="list_head">3Dパース<?php fnOrder('DRAWING', 'articleSearch') ?></th>
+					<th class="list_head">営業担当者<?php fnOrder('SELLCHARGE', 'articleSearch') ?></th>
 				</tr>
-			<?php
-				$i = ($i + 1) % 3;
-			}
-			?>
-		</table>
-	</div>
+				<?php
+				$sql = fnSqlArticleList(1, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleNote, $sKeyBox, $sDrawing, $sSellCharge, $sPage, $orderBy, $orderTo);
+
+				$res = mysqli_query($conn, $sql);
+				$i = 0;
+				while ($row = mysqli_fetch_array($res)) {
+					$articleNo   = $row["ARTICLENO"];
+					$article     = $row["ARTICLE"];
+					$room        = $row["ROOM"];
+					$keyPlace    = $row["KEYPLACE"];
+					$articleNote =  $row["ARTICLENOTE"];
+					$keyBox      = $row["KEYBOX"];
+					$drawing     = $row["DRAWING"];
+					$sellCharge  = $row["SELLCHARGE"];
+				?>
+					<tr>
+						<td class="list_td<?php print $i ?>"><a href="javascript:form.act.value='articleEdit';form.articleNo.value='<?php print $articleNo ?>';form.submit();"><?php print $article ?></a></td>
+						<td class="list_td<?php print $i ?>"><?php print $room ?></td>
+						<td class="list_td<?php print $i ?>"><?php print $keyPlace ?></td>
+						<td class="list_td<?php print $i ?>"><?php print $articleNote ?></td>
+						<td class="list_td<?php print $i ?>"><a href="javascript:form.act.value='fManager';form.sName.value='<?php print $article ?>';form.sRoom.value='<?php print $room ?>';form.submit();">表示</a></td>
+						<td class="list_td<?php print $i ?>"><?php print $room ?></td>
+						<td class="list_td<?php print $i ?>"><?php print $sellCharge ?></td>
+					</tr>
+				<?php
+					$i = ($i + 1) % 2;
+				}
+				?>
+			</table>
+		</div>
+	</form>
 <?php
 }
 
