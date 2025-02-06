@@ -6,14 +6,14 @@ function subArticle()
 {
 	$conn = fnDbConnect();
 
-	$sDel         = $_REQUEST['sDel'];
-	$sArticle     = $_REQUEST['sArticle'];
-	$sRoom        = $_REQUEST['sRoom'];
-	$sKeyPlace    = $_REQUEST['sKeyPlace'];
-	$sArticleNote = $_REQUEST['sArticleNote'];
-	$sKeyBox      = $_REQUEST['sKeyBox'];
-	$sDrawing     = $_REQUEST['sDrawing'];
-	$sSellCharge  = $_REQUEST['sSellCharge'];
+	$sDel         = htmlspecialchars($_REQUEST['sDel']);
+	$sArticle     = htmlspecialchars($_REQUEST['sArticle']);
+	$sRoom        = htmlspecialchars($_REQUEST['sRoom']);
+	$sKeyPlace    = htmlspecialchars($_REQUEST['sKeyPlace']);
+	$sArticleNote = htmlspecialchars($_REQUEST['sArticleNote']);
+	$sKeyBox      = htmlspecialchars($_REQUEST['sKeyBox']);
+	$sDrawing     = htmlspecialchars($_REQUEST['sDrawing']);
+	$sSellCharge  = htmlspecialchars($_REQUEST['sSellCharge']);
 
 	$orderBy = $_REQUEST['orderBy'];
 	$orderTo = $_REQUEST['orderTo'];
@@ -110,14 +110,14 @@ function subArticle()
 				$res = mysqli_query($conn, $sql);
 				$i = 0;
 				while ($row = mysqli_fetch_array($res)) {
-					$articleNo   = $row["ARTICLENO"];
-					$article     = $row["ARTICLE"];
-					$room        = $row["ROOM"];
-					$keyPlace    = $row["KEYPLACE"];
-					$articleNote =  $row["ARTICLENOTE"];
-					$keyBox      = $row["KEYBOX"];
-					$drawing     = $row["DRAWING"];
-					$sellCharge  = $row["SELLCHARGE"];
+					$articleNo   = htmlspecialchars($row["ARTICLENO"]);
+					$article     = htmlspecialchars($row["ARTICLE"]);
+					$room        = htmlspecialchars($row["ROOM"]);
+					$keyPlace    = htmlspecialchars($row["KEYPLACE"]);
+					$articleNote = htmlspecialchars($row["ARTICLENOTE"]);
+					$keyBox      = htmlspecialchars($row["KEYBOX"]);
+					$drawing     = htmlspecialchars($row["DRAWING"]);
+					$sellCharge  = htmlspecialchars($row["SELLCHARGE"]);
 				?>
 					<tr>
 						<td class="list_td<?php print $i ?>"><a href="javascript:form.act.value='articleEdit';form.articleNo.value='<?php print $articleNo ?>';form.submit();"><?php print $article ?></a></td>
@@ -149,15 +149,15 @@ function subArticleEdit()
 {
 	$conn = fnDbConnect();
 
-	$sDel         = $_REQUEST['sDel'];
-	$sArticle     = $_REQUEST['sArticle'];
-	$sRoom        = $_REQUEST['sRoom'];
-	$sKeyPlace    = $_REQUEST['sKeyPlace'];
-	$sArticleNote = $_REQUEST['sArticleNote'];
-	$sKeyBox      = $_REQUEST['sKeyBox'];
-	$sDueDTFrom   = $_REQUEST['sDueDTFrom'];
-	$sDueDTTo     = $_REQUEST['sDueDTTo'];
-	$sSellCharge  = $_REQUEST['sSellCharge'];
+	$sDel         = htmlspecialchars($_REQUEST['sDel']);
+	$sArticle     = htmlspecialchars($_REQUEST['sArticle']);
+	$sRoom        = htmlspecialchars($_REQUEST['sRoom']);
+	$sKeyPlace    = htmlspecialchars($_REQUEST['sKeyPlace']);
+	$sArticleNote = htmlspecialchars($_REQUEST['sArticleNote']);
+	$sKeyBox      = htmlspecialchars($_REQUEST['sKeyBox']);
+	$sDueDTFrom   = htmlspecialchars($_REQUEST['sDueDTFrom']);
+	$sDueDTTo     = htmlspecialchars($_REQUEST['sDueDTTo']);
+	$sSellCharge  = htmlspecialchars($_REQUEST['sSellCharge']);
 
 	$orderBy = $_REQUEST['orderBy'];
 	$orderTo = $_REQUEST['orderTo'];
@@ -170,15 +170,15 @@ function subArticleEdit()
 		$res = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_array($res);
 
-		$article     =  $row["ARTICLE"];
-		$room        =  $row["ROOM"];
-		$keyPlace    =  $row["KEYPLACE"];
-		$address     =  $row["ADDRESS"];
-		$articleNote =  $row["ARTICLENOTE"];
-		$keyBox      =  $row["KEYBOX"];
-		$drawing     =  $row["DRAWING"];
-		$sellCharge  =  $row["SELLCHARGE"];
-		$del         =  $row["DEL"];
+		$article     =  htmlspecialchars($row["ARTICLE"]);
+		$room        =  htmlspecialchars($row["ROOM"]);
+		$keyPlace    =  htmlspecialchars($row["KEYPLACE"]);
+		$address     =  htmlspecialchars($row["ADDRESS"]);
+		$articleNote =  htmlspecialchars($row["ARTICLENOTE"]);
+		$keyBox      =  htmlspecialchars($row["KEYBOX"]);
+		$drawing     =  htmlspecialchars($row["DRAWING"]);
+		$sellCharge  =  htmlspecialchars($row["SELLCHARGE"]);
+		$del         =  htmlspecialchars($row["DEL"]);
 
 		$purpose  = '更新';
 		$btnImage = 'btn_load.png';
@@ -270,15 +270,15 @@ function subArticleEditComplete()
 {
 	$conn = fnDbConnect();
 
-	$sDel         = $_REQUEST['sDel'];
-	$sArticle     = $_REQUEST['sArticle'];
-	$sRoom        = $_REQUEST['sRoom'];
-	$sKeyPlace    = $_REQUEST['sKeyPlace'];
-	$sArticleNote = $_REQUEST['sArticleNote'];
-	$sKeyBox      = $_REQUEST['sKeyBox'];
-	$sDueDTFrom   = $_REQUEST['sDueDTFrom'];
-	$sDueDTTo     = $_REQUEST['sDueDTTo'];
-	$sSellCharge  = $_REQUEST['sSellCharge'];
+	$sDel         = htmlspecialchars($_REQUEST['sDel']);
+	$sArticle     = htmlspecialchars($_REQUEST['sArticle']);
+	$sRoom        = htmlspecialchars($_REQUEST['sRoom']);
+	$sKeyPlace    = htmlspecialchars($_REQUEST['sKeyPlace']);
+	$sArticleNote = htmlspecialchars($_REQUEST['sArticleNote']);
+	$sKeyBox      = htmlspecialchars($_REQUEST['sKeyBox']);
+	$sDueDTFrom   = htmlspecialchars($_REQUEST['sDueDTFrom']);
+	$sDueDTTo     = htmlspecialchars($_REQUEST['sDueDTTo']);
+	$sSellCharge  = htmlspecialchars($_REQUEST['sSellCharge']);
 
 	$orderBy = $_REQUEST['orderBy'];
 	$orderTo = $_REQUEST['orderTo'];
