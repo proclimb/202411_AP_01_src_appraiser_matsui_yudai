@@ -30,12 +30,14 @@ function fnSqlConstList($flg, $sDel, $sArticle, $sConstTrader, $sConstFlg1, $sCo
 	if ($sArticle) {
 		$sql .= " AND ARTICLE LIKE '%$sArticle%'";
 	}
+	/*
 	if ($sRoom) {
 		$sql .= " AND ROOM LIKE '%$sRoom%'";
 	}
 	if ($sAddress) {
 		$sql .= " AND ADDRESS LIKE '%$sAddress%'";
 	}
+	*/
 	if ($sConstTrader) {
 		$sql .= " AND CONSTTRADER LIKE '%$sConstTrader%'";
 	}
